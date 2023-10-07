@@ -1,8 +1,8 @@
-import { IoCloseOutline } from "react-icons/io5";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useCategories } from "../../contexts/CategoryContext";
+import Modal from "../ui/Modal";
 
 function CategoryAdd({ setOpen }) {
   const { handleAddCategory } = useCategories();
@@ -10,6 +10,7 @@ function CategoryAdd({ setOpen }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!name) return;
     const newCategory = {
       id: uuidv4(),
       name,
@@ -18,17 +19,17 @@ function CategoryAdd({ setOpen }) {
     setOpen(false);
   }
 
+  function handleCancel(e) {
+    e.preventDefault();
+    setName("");
+  }
+
   return (
-    <div className="bg-white w-[50%] p-8 rounded-xl">
-      <div className="flex justify-end">
-        <IoCloseOutline
-          size={40}
-          className="cursor-pointer"
-          onClick={() => {
-            setOpen(false);
-          }}
-        />
-      </div>
+    <Modal
+      onClick={() => {
+        setOpen(false);
+      }}
+    >
       <h1 className="text-[32px] font-bold text-center text-[#030307] pb-4">
         Add New Category
       </h1>
@@ -46,11 +47,14 @@ function CategoryAdd({ setOpen }) {
           />
         </div>
 
-        <div className="pt-4" style={{ float: "right" }}>
+        <div className="pt-4 flex justify-end space-x-2">
+          <Button onClick={handleCancel} type="secondary">
+            Reset
+          </Button>
           <Button>+ Add Category</Button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
 

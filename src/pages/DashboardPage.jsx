@@ -1,16 +1,20 @@
-import Dashboard from "../components/Dashboard/Dashboard";
-import Header from "../components/Dashboard/Header";
-import Sidebar from "../components/Sidebar/Sidebar";
+import CategoriesCard from "../components/Dashboard/CategoriesCard";
+import LineChart from "../components/Dashboard/LineChart";
+import OverviewChart from "../components/Dashboard/OverviewChart";
+import UserCard from "../components/Dashboard/UserCard";
 
 function DashboardPage() {
   return (
-    <div className="flex">
-      <Sidebar CurActive={1} />
-      <div className="xl:p-8 2xl:p-12 w-full ml-[22%]">
-        <Header />
-        <Dashboard />
+    <>
+      <div className="pt-8 w-full flex ">
+        <UserCard />
+        <CategoriesCard />
       </div>
-    </div>
+      <div className="pt-8 w-full flex">
+        <OverviewChart />
+        <LineChart />
+      </div>
+    </>
   );
 }
 

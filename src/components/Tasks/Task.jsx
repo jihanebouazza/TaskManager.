@@ -1,10 +1,13 @@
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { TbProgress, TbProgressAlert, TbProgressCheck } from "react-icons/tb";
 import { useTasks } from "../../contexts/TaskContext";
+import { useState } from "react";
+import DeleteModal from "../ui/DeleteModal";
 
 function Task({ setOpen, task, setId }) {
   const { handleDeleteTask } = useTasks();
   const { name, category, status, id } = task;
+  const [openModal, setOpenModal] = useState(false);
 
   function handleDelete(e) {
     e.stopPropagation();
@@ -38,12 +41,22 @@ function Task({ setOpen, task, setId }) {
             {category}
           </div>
           <AiOutlineCloseCircle
-            onClick={handleDelete}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpenModal(true);
+            }}
             size={30}
             color="F24848"
           />
         </div>
       </div>
+      {openModal && (
+        <DeleteModal
+          onClick={() => setOpenModal((open) => !open)}
+          onConfirm={handleDelete}
+          resourceName="task"
+        />
+      )}
     </>
   );
 }

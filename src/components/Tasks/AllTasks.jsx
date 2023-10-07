@@ -3,7 +3,7 @@ import Searchbar from "./Searchbar";
 import TasksStatus from "./TasksStatus";
 import { useState } from "react";
 import TaskUpdate from "./TaskUpdate";
-import Overlay from "../Overlay";
+import Overlay from "../ui/Overlay";
 import Task from "./Task";
 import { useTasks } from "../../contexts/TaskContext";
 
@@ -11,10 +11,7 @@ function AllTasks() {
   const [open, setOpen] = useState(false);
   const { allTasks } = useTasks();
   const [id, setId] = useState("");
-  // status if finished the icon is green
-  // description
-  // category
-  // date
+
   return (
     <>
       <div>

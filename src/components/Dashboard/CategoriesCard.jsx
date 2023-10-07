@@ -1,14 +1,15 @@
-import Button from "../Button";
+import Button from "../ui/Button";
 import styles from "./CategoriesCard.module.css";
 import { useState } from "react";
 import CategoryAdd from "../Categories/CategoryAdd";
-import Overlay from "../Overlay";
+import Overlay from "../ui/Overlay";
 import Category from "../Categories/Category";
 import { useCategories } from "../../contexts/CategoryContext";
 
 function CategoriesCard() {
   const { categories } = useCategories();
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className={styles.card}>

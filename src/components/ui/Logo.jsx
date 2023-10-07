@@ -1,8 +1,9 @@
 import { FcTimeline } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 function Logo() {
   return (
-    <div className="flex">
+    <Link to='/' className="flex">
       <div>
         <FcTimeline className="inline-block mr-1" size={30} />
       </div>
@@ -16,7 +17,7 @@ function Logo() {
       >
         TaskManager
       </p>
-    </div>
+    </Link>
   );
 }
 

@@ -1,4 +1,8 @@
+import { useAuth } from "../../contexts/AuthContext";
+
 function UserInfo() {
+  const { user } = useAuth();
+
   return (
     <div className="bg-red absolute bottom-0 left-0 right-0 flex items-center p-4">
       <div className="">
@@ -8,10 +12,10 @@ function UserInfo() {
         />
       </div>
       <div className="pl-3">
-        <p className="font-medium text-[#030307]">John Doe</p>
-        <p className="font-medium text-[14px] text-[#6B6B70]">
-          johndoe@gmail.com
+        <p className="font-medium text-[#030307]">
+          {user.firstname + " " + user.lastname}
         </p>
+        <p className="font-medium text-[14px] text-[#6B6B70]">{user.email}</p>
       </div>
     </div>
   );

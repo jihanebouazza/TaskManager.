@@ -1,8 +1,8 @@
-import { IoCloseOutline } from "react-icons/io5";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { useTasks } from "../../contexts/TaskContext";
 import { useState } from "react";
 import { useCategories } from "../../contexts/CategoryContext";
+import Modal from "../ui/Modal";
 // import { useState } from "react";
 
 function TaskUpdate({ setOpen, id }) {
@@ -19,6 +19,9 @@ function TaskUpdate({ setOpen, id }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!name || !category || !date) return;
+
     const updatedTask = {
       ...task,
       name: nameU,
@@ -30,17 +33,20 @@ function TaskUpdate({ setOpen, id }) {
     setOpen(false);
   }
 
+  function handleCancel(e) {
+    e.preventDefault();
+    setNameU(name);
+    setCategoryU(category);
+    setDateU(date);
+    setStatusU(status);
+  }
+
   return (
-    <div className="bg-white w-[50%] p-8 rounded-xl">
-      <div className="flex justify-end">
-        <IoCloseOutline
-          size={40}
-          className="cursor-pointer"
-          onClick={() => {
-            setOpen(false);
-          }}
-        />
-      </div>
+    <Modal
+      onClick={() => {
+        setOpen(false);
+      }}
+    >
       <h1 className="text-[32px] font-bold text-center text-[#030307] pb-4">
         Update Task
       </h1>
@@ -79,7 +85,7 @@ function TaskUpdate({ setOpen, id }) {
             onChange={(e) => setStatusU(e.target.value)}
             className="ease-in duration-300 p-2 border border-[#E5E6FF] rounded-lg focus:ring-2 focus:ring-offset-2 outline-none focus:outline-none focus:ring-[#E5E6FF] focus:border-[#C2C4F9]"
           >
-            <option value=''>Choose a status</option>
+            <option value="">Choose a status</option>
             <option value="Finished">Finished</option>
             <option value="In progress">In progress</option>
             <option value="Not started">Not started</option>
@@ -96,11 +102,14 @@ function TaskUpdate({ setOpen, id }) {
             className="ease-in duration-300 p-2 border border-[#E5E6FF] rounded-lg focus:ring-2 focus:ring-offset-2 outline-none focus:outline-none focus:ring-[#E5E6FF] focus:border-[#C2C4F9]"
           />
         </div>
-        <div className="pt-4" style={{ float: "right" }}>
+        <div className="pt-4 flex justify-end space-x-2">
+          <Button onClick={handleCancel} type="secondary">
+            Reset
+          </Button>
           <Button>Update Task</Button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
 

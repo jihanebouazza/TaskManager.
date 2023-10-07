@@ -1,10 +1,14 @@
 import { IoCloseOutline } from "react-icons/io5";
 import styles from "../Dashboard/CategoriesCard.module.css";
 import { useCategories } from "../../contexts/CategoryContext";
+import { useState } from "react";
+import DeleteModal from "../ui/DeleteModal";
 
 function Category({ category }) {
   const { handleDeleteCategory } = useCategories();
   const { name, id } = category;
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -16,10 +20,18 @@ function Category({ category }) {
           color="#2F303C"
           size={20}
           className="cursor-pointer mr-4 mt-1"
-          onClick={() => handleDeleteCategory(id)}
+          onClick={() => setOpenModal(true)}
         />
       </div>
       <div className={styles.line}></div>
+
+      {openModal && (
+        <DeleteModal
+          onClick={() => setOpenModal((open) => !open)}
+          onConfirm={() => handleDeleteCategory(id)}
+          resourceName="category"
+        />
+      )}
     </>
   );
 }

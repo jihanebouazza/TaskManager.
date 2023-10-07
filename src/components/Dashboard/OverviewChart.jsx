@@ -45,8 +45,6 @@ function OverviewChart() {
       {tasks.length ? (
         <Doughnut
           data={data}
-          width={300} // set the width in pixels
-          height={300}
         />
       ) : (
         <p className="text-center py-4 text-[18px] mt-8">No data to dispaly!</p>

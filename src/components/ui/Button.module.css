@@ -1,0 +1,23 @@
+.btn {
+  border-radius: 8px;
+  background: #4b4efc;
+  padding: 12px 32px;
+  color: #fcfdff;
+  font-weight: 500;
+}
+
+.btn_secondary {
+  border-radius: 8px;
+  background: #fcfdff;
+  padding: 12px 32px;
+  border: 1px solid #a5a5a6;
+  color: #242434;
+  font-weight: 500;
+}
+.btn_danger {
+  border-radius: 8px;
+  background: #f24848;
+  padding: 12px 32px;
+  color: #fcfdff;
+  font-weight: 500;
+}

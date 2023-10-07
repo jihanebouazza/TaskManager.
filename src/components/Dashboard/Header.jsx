@@ -1,16 +1,18 @@
 import { useState } from "react";
-import Button from "../Button";
+import Button from "../ui/Button";
 import User from "./User";
-import Overlay from "../Overlay";
+import Overlay from "../ui/Overlay";
 import TaskAdd from "../Tasks/TaskAdd";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Header() {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   return (
     <>
       <header className="flex items-center justify-between w-full">
-        <div className="text-[#242434] text-[32px] font-medium">
-          Hello, John
+        <div className="text-[#242434] text-[28px] font-medium">
+          Hello, {user.firstname}
         </div>
         <div className="flex items-center justify-between">
           <div className="mr-2">
